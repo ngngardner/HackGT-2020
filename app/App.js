@@ -11,8 +11,8 @@ import KitchenComplete from './components/kitchen/KitchenComplete';
 import KitchenFulfillment from './components/kitchen/KitchenFulfillment';
 
 
-import * as ScreenOrientation from 'expo-screen-orientation';
-ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE_LEFT);
+// import * as ScreenOrientation from 'expo-screen-orientation';
+// ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE_LEFT);
 
 const Separator = () => (
   <View style={styles.separator} />
@@ -34,10 +34,9 @@ export default function App() {
         <Stack.Screen name="CustomerMain">
           {props => <CustomerMain {...props} styles={styles} state={state} />}
         </Stack.Screen>
-        {/* <Stack.Screen name="CustomerMenu">
+        <Stack.Screen name="CustomerMenu">
           {props => <CustomerMenu {...props} styles={styles} state={state} />}
-        </Stack.Screen> */}
-        <Stack.Screen name="CustomerMenu" component={CustomerMenu} />
+        </Stack.Screen>
         <Stack.Screen name="KitchenFulfillment">
           {props => <KitchenFulfillment {...props} styles={styles} state={state} />}
         </Stack.Screen>
