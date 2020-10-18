@@ -1,13 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+
+const Separator = () => (
+  <View style={styles.separator} />
+);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <View>
+        <Text>Reverse Delivery app</Text>
+        <Text>Sponsored by NCR</Text>
+      </View>
+
+
+      <View>
+        <Button title="Customer Route" onPress={() => { Alert.alert('Customer Router pressed') }}></Button>
+
+        <Separator></Separator>
+
+        <Button title="Kitchen Route" onPress={() => { Alert.alert('Customer Router pressed') }} ></Button>
+      </View>
+
       <StatusBar style="auto" />
+
+
+
     </View>
+
   );
 }
 
