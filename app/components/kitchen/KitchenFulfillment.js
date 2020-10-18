@@ -1,77 +1,79 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import { Card, ListItem, Icon, ButtonGroup } from "react-native-elements";
 import { FlatList } from 'react-native-gesture-handler';
 
-const Separator = ({ styles }) => (
-    <View style={styles.separator} />
-);
 
-const orders = [
-    {
-        name: "order 1",
-        distance: 10.9,
-        time: 300,
-        finished: false
-    },
-    {
-        name: "order 2",
-        distance: 8.4,
-        time: 250,
-        finished: false
-    },
-    {
-        name: "order 3",
-        distance: 0.4,
-        time: 103,
-        finished: false
-    },
-    {
-        name: "order 4",
-        distance: 0,
-        time: 0,
-        finished: false
+export default class KitchenFulfillment extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            orders: [
+                {
+                    name: "order 1",
+                    distance: 10.9,
+                    time: 300,
+                    finished: false
+                },
+                {
+                    name: "order 2",
+                    distance: 8.4,
+                    time: 250,
+                    finished: false
+                },
+                {
+                    name: "order 3",
+                    distance: 0.4,
+                    time: 103,
+                    finished: false
+                },
+                {
+                    name: "order 4",
+                    distance: 0,
+                    time: 0,
+                    finished: false
+                }
+            ]
+        }
     }
-]
-
-export default function KitchenFulfillment({ styles, navigation }) {
-    return (
-        <View style={styles.kitchenContainer}>
-            <View>
-                <Text style={styles.title}>Restaurant Name</Text>
-            </View>
-
-            <FlatList
-                data={orders}
-                renderItem={renderItem}
-                keyExtractor={(item, index) => index.toString()}
-            />
-
-            <View>
-                <Button title="Kitchen Fulfillment Test"
-                    onPress={() => { }}
+    render() {
+        return (
+            <View style={this.props.styles.kitchenContainer}>
+                <View>
+                    <Text style={this.props.styles.title}>Restaurant Name</Text>
+                </View>
+    
+                <FlatList
+                    data={this.state.orders}
+                    renderItem={({item, index}) => renderItem(item, index)}
+                    keyExtractor={(item, index) => index.toString()}
                 />
+    
+                <View>
+                    <Button title="Kitchen Fulfillment Test"
+                        onPress={() => {}}
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
 
 // const test = (index) => {
 //     orders[index].finished = true;
 // }
 
-const renderItem = (item) => {
-    return !item.finished && <OrderItem item={item.item} />
+const renderItem = (item, index) => {
+    // console.log(index)
+    return !item.finished && <OrderItem item={item} index={index} />
 }
 
-const testTwo = (val, other) => {
-    if (val == 1) {
-        orders[0].finished = true;
-    }
+const testTwo = (val) => {
+    // console.log(val);
 }
 
-const OrderItem = (item) => {
+const OrderItem = (item, index) => {
     const newItem = item.item;
 
     let timeRemaining = Math.floor(newItem.time / 60);
@@ -79,7 +81,15 @@ const OrderItem = (item) => {
     const component1 = () => <Text>{timeRemaining} min / {newItem.distance} mi</Text>
     const component2 = () => <Text>Finish</Text>
 
-    const buttons = [{ element: component1 }, { element: component2 }]
+    const buttons = [
+        { 
+            element: component1,
+            onPress: (index) => { console.log("Index: " + index) } 
+        },
+        {
+            element: component2
+        }
+    ];
 
     return (
         <Card>
@@ -94,7 +104,6 @@ const OrderItem = (item) => {
                 <ButtonGroup
                     buttons={buttons}
                     onPress={testTwo}
-                // selectedIndex={newItem.distance}
                 />
             </View>
         </Card>
