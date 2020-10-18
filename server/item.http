@@ -1,0 +1,57 @@
+POST http://127.0.0.1:5000/items/420 HTTP/1.1
+content-type: application/json
+
+{"version": 1,
+  "packageIdentifiers": [
+    {
+      "type": "0",
+      "value": "420"
+    }
+  ],
+  "longDescription": {
+    "values": [
+      {
+        "locale": "en-US",
+        "value": "The Travis Scott Meal"
+      }
+    ]
+  },
+  "shortDescription": {
+    "values": [
+      {
+        "locale": "en-US",
+        "value": "Travis Scott Meal"
+      }
+    ]
+  },
+  "merchandiseCategory": {
+    "nodeId": "Combo"
+  },
+  "alternateCategories": [
+    
+  ],
+  "status": "ACTIVE",
+  "departmentId": "02",
+  "nonMerchandise": false,
+  "familyCode": "1",
+  "referenceId": "00000000000420",
+  "manufacturerCode": null,
+  "externalIdentifiers": null,
+  "dynamicAttributes": [
+    {
+      "type": "retail-item",
+      "attributes": [
+        {
+          "key": "ADDITIONAL_DESCRIPTION",
+          "value": null,
+          "localizedValue": null
+        },
+        {
+          "key": "ITEM_TYPE_CODE",
+          "value": "0",
+          "localizedValue": null
+        }
+      ]
+    }
+  ]
+  }
