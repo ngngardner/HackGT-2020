@@ -6,20 +6,57 @@ import { Alert, Button, StyleSheet, Text, View, FlatList, TouchableHighlight } f
 import { Icon } from 'react-native-elements';
 
 const items = [
-    { name: "Cola", id: 101, count: 0 },
-    { name: "Milk", id: 15001, count: 0 },
-    { name: "Something", id: 200, count: 0 },
-    { name: "Something", id: 22, count: 0 },
+    { name: "Cola", id: 101, count: 0, price: 5.0 },
+    { name: "Milk", id: 15001, count: 0, price: 3.5 },
+    { name: "Something", id: 200, count: 0, price: 3.5 },
+    { name: "Something", id: 22, count: 0, price: 4.0 },
 ];
 
 export default class CustomerMenu extends Component {
-    state = {
-        items: [
-            { name: "Cola", id: 101, count: 0 },
-            { name: "Milk", id: 15001, count: 0 },
-            { name: "Something", id: 200, count: 0 },
-            { name: "Something", id: 22, count: 0 },
-        ]
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [
+                { name: "Cola", id: 101, count: 0, price: 5.0 },
+                { name: "Milk", id: 15001, count: 0, price: 3.5 },
+                { name: "Something", id: 200, count: 0, price: 3.5 },
+                { name: "Something", id: 22, count: 0, price: 4.0 },
+            ]
+        }
+    }
+    increment(item) {
+        for (var i = 0; i < items.length; i++) {
+            if (this.state.items[i].id == item.id) {
+                var newItems = this.state.items.slice();
+                newItems[i].count = newItems[i].count + 1;
+                this.setState({
+                    items: newItems,
+                });
+                console.log(this.state.items);
+            }
+        }
+    }
+    decrement(item) {
+        for (var i = 0; i < items.length; i++) {
+            if (this.state.items[i].id == item.id) {
+                var newItems = this.state.items.slice();
+                if (newItems[i].count > 0) {
+                    newItems[i].count = newItems[i].count - 1;
+                }
+
+                this.setState({
+                    items: newItems,
+                });
+                console.log(this.state.items);
+            }
+        }
+    }
+    countTotalCost() {
+        var total = 0;
+        this.state.items.forEach(element => {
+            total = element.count * element.price + total;
+        });
+        return total;
     }
     render() {
         return (
@@ -34,7 +71,8 @@ export default class CustomerMenu extends Component {
                 </View>
                 <View>
                     <FlatList
-                        data={items}
+                        data={this.state.items}
+                        extraData={this.state}
                         renderItem={({ item }) => {
                             return (
                                 <View style={{ display: "flex", marginTop: 0, flexDirection: "row" }}>
@@ -42,7 +80,7 @@ export default class CustomerMenu extends Component {
                                         padding: 10,
                                         fontSize: 18,
                                         height: 44,
-                                        marginHorizontal: 16,
+                                        marginHorizontal: 5,
                                         backgroundColor: '#f9c2ff',
                                         flex: 5,
                                     }}>{item.name}</Text>
@@ -50,35 +88,46 @@ export default class CustomerMenu extends Component {
                                         padding: 10,
                                         fontSize: 18,
                                         height: 44,
-                                        marginHorizontal: 16,
+                                        marginHorizontal: 5,
                                         backgroundColor: '#f9c2ff',
-                                        flex: 5,
+                                        flex: 4,
+                                    }}>Cost: ${item.price}</Text>
+                                    <Text style={{
+                                        padding: 10,
+                                        fontSize: 18,
+                                        height: 44,
+                                        marginHorizontal: 5,
+                                        backgroundColor: '#f9c2ff',
+                                        flex: 4,
                                     }}>Count: {item.count}</Text>
-                                    <TouchableHighlight onPress={() => {
-                                        for (var i = 0; i < items.length; i++) {
-                                            if (this.state.items[i].id == item.id) {
-
-                                            }
-                                        }
-                                    }}>
+                                    <TouchableHighlight onPress={() => this.increment(item)}>
                                         <View style={{ flex: 2 }}>
                                             <Icon name="pluscircle" type="antdesign" color="#887700" style={{ margin: 10 }} />
                                         </View>
                                     </TouchableHighlight>
-                                    <TouchableHighlight onPress={() => decrement(item)}>
+                                    <TouchableHighlight onPress={() => this.decrement(item)}>
                                         <View style={{ flex: 2 }}>
                                             <Icon name="minuscircle" type="antdesign" color="#887700" style={{ margin: 10 }} />
                                         </View>
                                     </TouchableHighlight>
+
                                 </View>
 
                             );
                         }}
                     />
                 </View>
+                <Text style={{
+                    fontSize: 18,
+                    height: 44,
+                    textAlign: 'center',
+                    margin: 20
+                }}>
+                    TotalCost: ${this.countTotalCost()}
+                </Text>
                 <View>
                     <Button title="Order Now"
-                        onPress={() => navigation.navigate('CustomerMenu')}
+                        onPress={() => this.props.navigation.navigate('Home')}
                     />
                 </View>
             </View>
@@ -86,51 +135,3 @@ export default class CustomerMenu extends Component {
     }
 
 }
-
-// const ItemRow = (item, state) => {
-//     return (
-//         <View style={{ display: "flex", marginTop: 0, flexDirection: "row" }}>
-//             <Text style={{
-//                 padding: 10,
-//                 fontSize: 18,
-//                 height: 44,
-//                 marginHorizontal: 16,
-//                 backgroundColor: '#f9c2ff',
-//                 flex: 5,
-//             }}>{item.item.name}</Text>
-//             <Text style={{
-//                 padding: 10,
-//                 fontSize: 18,
-//                 height: 44,
-//                 marginHorizontal: 16,
-//                 backgroundColor: '#f9c2ff',
-//                 flex: 5,
-//             }}>Count: {item.item.count}</Text>
-//             <TouchableHighlight onPress={() => increment(item.item, state)} >
-//                 <View style={{ flex: 2 }}>
-//                     <Icon name="pluscircle" type="antdesign" color="#887700" style={{ margin: 10 }} />
-//                 </View>
-//             </TouchableHighlight>
-//             <TouchableHighlight onPress={() => decrement(item.item)}>
-//                 <View style={{ flex: 2 }}>
-//                     <Icon name="minuscircle" type="antdesign" color="#887700" style={{ margin: 10 }} />
-//                 </View>
-//             </TouchableHighlight>
-//         </View>
-
-//     );
-// }
-
-// function increment(item) {
-
-//     for (var i = 0; i < items.length; i++) {
-//         if (items[i].id == item.id) {
-//             items[i].count = items[i].count + 1;
-//         }
-//     }
-
-// }
-
-// function decrement(item) {
-//     console.log(item);
-// }
