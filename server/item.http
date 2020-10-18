@@ -1,7 +1,10 @@
-POST http://127.0.0.1:5000/items/420 HTTP/1.1
+###########################
+
+PUT http://127.0.0.1:5000/items/420 HTTP/1.1
 content-type: application/json
 
-{"version": 1,
+{
+  "version": 1,
   "packageIdentifiers": [
     {
       "type": "0",
@@ -27,9 +30,7 @@ content-type: application/json
   "merchandiseCategory": {
     "nodeId": "Combo"
   },
-  "alternateCategories": [
-    
-  ],
+  "alternateCategories": [],
   "status": "ACTIVE",
   "departmentId": "02",
   "nonMerchandise": false,
@@ -54,4 +55,6 @@ content-type: application/json
       ]
     }
   ]
-  }
+}
+
+###########################
