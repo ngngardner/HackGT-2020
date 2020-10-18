@@ -1,3 +1,4 @@
+
 import requests
 
 
@@ -8,7 +9,8 @@ def replace(ctx, payload, order_id):
         "PUT",
         url,
         headers=ctx.headers,
-        data=payload
+        data=payload,
+        auth=ctx.auth
     )
 
     return response

@@ -7,7 +7,7 @@ from .get import get_cartitems
 
 def increment_item(ctx, cart_id, item_id):
     # find line id
-    items = json.loads(get_cartitems(ctx, cart_id).text)
+    items = json.loads(get_cartitems(ctx, cart_id))
     line_id = None
     for item in items['pageContent']:
         if item['scanData'] == str(item_id):
@@ -31,13 +31,13 @@ def increment_item(ctx, cart_id, item_id):
             auth=ctx.auth
         )
 
-        return response
+        return response.text
     return None
 
 
 def decrement_item(ctx, cart_id, item_id):
     # find line id
-    items = json.loads(get_cartitems(ctx, cart_id).text)
+    items = json.loads(get_cartitems(ctx, cart_id))
     line_id = None
     for item in items['pageContent']:
         if item['scanData'] == str(item_id):
@@ -61,7 +61,7 @@ def decrement_item(ctx, cart_id, item_id):
             auth=ctx.auth
         )
 
-        return response
+        return response.text
     return None
 
 
@@ -80,4 +80,4 @@ def finalize_cart(ctx, cart_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text

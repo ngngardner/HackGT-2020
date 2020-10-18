@@ -1,32 +1,64 @@
 
-from flask import Flask
+from flask import Flask, request
 from context import Context
 
 from request import orders, selling
-
 
 app = Flask(__name__)
 ctx = Context()
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/carts', methods=["POST"])
+def carts():
+    if request.method == 'POST':
+        return selling.create_cart(ctx)
 
 
-if __name__ == "__main__":
-    # print(ctx.auth)
-    # print(orders.create(ctx, "Good_Morning"))
+@app.route("/items/<item_id>", methods=["GET"])
+def items_id(item_id):
+    if request.method == 'GET':
+        return selling.get_item(ctx, item_id)
 
-    # cart info
-    cart_id = selling.create_cart(ctx)
-    print(selling.add_item(ctx, 101, cart_id).text)
-    cart_info = selling.get_cartitems(ctx, cart_id)
-    print(cart_info.text)
-    print(selling.increment_item(ctx, cart_id, 101).text)
-    cart_info = selling.get_cartitems(ctx, cart_id)
-    print(cart_info.text)
 
-    print(selling.decrement_item(ctx, cart_id, 101).text)
-    cart_info = selling.get_cartitems(ctx, cart_id)
-    print(cart_info.text)
+@app.route("/carts/<cart_id>", methods=["GET", "DELETE"])
+def carts_id(cart_id):
+    if request.method == 'GET':
+        return selling.get_cart(ctx, cart_id)
+    if request.method == 'DELETE':
+        return selling.delete_cart(ctx, cart_id)
+
+
+@app.route("/carts/<cart_id>/items", methods=["GET"])
+def carts_items(cart_id):
+    if request.method == 'GET':
+        return selling.get_cartitems(ctx, cart_id)
+
+
+@app.route("/carts/<cart_id>/items/<item_id>", methods=["POST", "PATCH", "DELETE"])
+def carts_items_id(cart_id, item_id):
+    if request.method == 'POST':
+        return selling.add_item(ctx, item_id, cart_id)
+    if request.method == 'PATCH':
+        return selling.increment_item(ctx, cart_id, item_id)
+    if request.method == 'DELETE':
+        return selling.decrement_item(ctx, cart_id, item_id)
+
+# ORDERS
+@app.route("/orders", methods=["POST"])
+def create_order():
+    if request.method == 'POST':
+        return orders.create(ctx, request.data)
+
+
+@app.route("/orders/find", methods=["POST"])
+def find_order():
+    if request.method == 'POST':
+        return orders.find(ctx, request.data)
+
+
+@app.route("/orders/<order_id>", methods=["GET", "PUT"])
+def orders_id(order_id):
+    if request.method == 'GET':
+        return orders.get_order(ctx, order_id)
+    if request.method == 'PUT':
+        return orders.replace(ctx, request.data, order_id)

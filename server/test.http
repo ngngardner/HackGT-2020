@@ -1,0 +1,84 @@
+###########
+#    _____ ______ _      _      _____ _   _  _____ 
+#   / ____|  ____| |    | |    |_   _| \ | |/ ____|
+#  | (___ | |__  | |    | |      | | |  \| | |  __ 
+#   \___ \|  __| | |    | |      | | | . ` | | |_ |
+#   ____) | |____| |____| |____ _| |_| |\  | |__| |
+#  |_____/|______|______|______|_____|_| \_|\_____|
+#                     
+###########
+
+# Create a cart, returns an ID
+POST http://127.0.0.1:5000/carts HTTP/1.1
+content-type: application/json
+
+{}
+
+################
+# Get cart info by Id
+GET http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw HTTP/1.1
+content-type: application/json
+
+################
+# Get cart items by Id
+GET http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw/items HTTP/1.1
+content-type: application/json
+
+################
+# Add item to cart
+POST http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw/items/101 HTTP/1.1
+content-type: application/json
+
+################
+# Delete cart
+DELETE http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw HTTP/1.1
+content-type: application/json
+
+################
+# Get item info by Id
+GET http://127.0.0.1:5000/items/101 HTTP/1.1
+content-type: application/json
+
+################
+# Increment item in cart
+PATCH http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw/items/101 HTTP/1.1
+content-type: application/json
+
+################
+# Decrement item in cart
+DELETE http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw/items/101 HTTP/1.1
+content-type: application/json
+
+################
+#    ____  _____  _____  ______ _____   _____ 
+#   / __ \|  __ \|  __ \|  ____|  __ \ / ____|
+#  | |  | | |__) | |  | | |__  | |__) | (___  
+#  | |  | |  _  /| |  | |  __| |  _  / \___ \ 
+#  | |__| | | \ \| |__| | |____| | \ \ ____) |
+#   \____/|_|  \_\_____/|______|_|  \_\_____/ 
+#
+################
+# Create an order
+POST http://127.0.0.1:5000/orders HTTP/1.1
+content-type: application/json
+
+"Hello world"
+################
+# Find an order
+POST http://127.0.0.1:5000/orders/find HTTP/1.1
+content-type: application/json
+
+{}
+
+################
+# Find an order
+GET http://127.0.0.1:5000/orders/<> HTTP/1.1
+content-type: application/json
+
+################
+# Find an order
+POST http://127.0.0.1:5000/orders/<> HTTP/1.1
+content-type: application/json
+
+{}
+

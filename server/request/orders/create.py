@@ -8,7 +8,7 @@ def create(ctx, body):
 
     payload = json.dumps({
         'expireAt': "2020-05-08T14:26:48Z",
-        'comments': body
+        'comments': str(body)
     })
 
     response = requests.request(
@@ -19,4 +19,4 @@ def create(ctx, body):
         auth=ctx.auth
     )
 
-    return response
+    return response.text

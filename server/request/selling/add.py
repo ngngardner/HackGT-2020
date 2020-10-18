@@ -22,4 +22,4 @@ def add_item(ctx, item_id, cart_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text

@@ -12,7 +12,7 @@ def get_item(ctx, item_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text
 
 
 def get_cart(ctx, cart_id):
@@ -25,7 +25,7 @@ def get_cart(ctx, cart_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text
 
 
 def get_cartitems(ctx, cart_id):
@@ -38,4 +38,4 @@ def get_cartitems(ctx, cart_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text

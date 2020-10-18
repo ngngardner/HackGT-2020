@@ -12,4 +12,4 @@ def delete_cart(ctx, cart_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text
