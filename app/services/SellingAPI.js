@@ -1,4 +1,4 @@
-const URL = 'localhost:8000';
+const URL = 'localhost:5000';
 
 export const createCart = () => fetch(`${url}/carts`, {method: "POST"});
 

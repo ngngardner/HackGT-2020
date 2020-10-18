@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { Alert, Button, StyleSheet, Text, View, FlatList, TouchableHighlight } from 'react-native';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import { Icon } from 'react-native-elements';
+import * as SellingAPI from "../../services/SellingAPI";
 
 const items = [
     { name: "Cola", id: 101, count: 0, price: 5.0 },
@@ -15,14 +16,17 @@ const items = [
 export default class CustomerMenu extends Component {
     constructor(props) {
         super(props);
+        const cartId = SellingAPI.createCart();
         this.state = {
             items: [
                 { name: "Cola", id: 101, count: 0, price: 5.0 },
                 { name: "Milk", id: 15001, count: 0, price: 3.5 },
                 { name: "Something", id: 200, count: 0, price: 3.5 },
                 { name: "Something", id: 22, count: 0, price: 4.0 },
-            ]
+            ],
+            cartId: cartId
         }
+        
     }
     increment(item) {
         for (var i = 0; i < items.length; i++) {
@@ -35,6 +39,7 @@ export default class CustomerMenu extends Component {
                 console.log(this.state.items);
             }
         }
+        SellingAPI.incrementCartItem(this.state.cartId, item.id);
     }
     decrement(item) {
         for (var i = 0; i < items.length; i++) {
@@ -50,13 +55,17 @@ export default class CustomerMenu extends Component {
                 console.log(this.state.items);
             }
         }
+        SellingAPI.decrementCartItem(this.state.cartId, item.id);
     }
     countTotalCost() {
+        const cart = SellingAPI.getCart(this.state.cartId);
+        const cartTotalFromApi = cart.totals.grossAmount;
         var total = 0;
         this.state.items.forEach(element => {
             total = element.count * element.price + total;
         });
         return total;
+        //return cartTotalFromApi;
     }
     render() {
         return (
