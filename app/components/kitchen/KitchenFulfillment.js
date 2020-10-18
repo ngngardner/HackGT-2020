@@ -8,7 +8,7 @@ const Separator = ({ styles }) => (
 
 export default function KitchenFulfillment({ styles, navigation }) {
     return (
-        <View style={styles.container}>
+        <View>
             <View>
                 <Text>Kitchen fulfillment test</Text>
             </View>

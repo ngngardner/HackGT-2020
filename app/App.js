@@ -1,5 +1,4 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert, Button, StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -35,9 +34,10 @@ export default function App() {
         <Stack.Screen name="CustomerMain">
           {props => <CustomerMain {...props} styles={styles} state={state} />}
         </Stack.Screen>
-        <Stack.Screen name="CustomerMenu">
+        {/* <Stack.Screen name="CustomerMenu">
           {props => <CustomerMenu {...props} styles={styles} state={state} />}
-        </Stack.Screen>
+        </Stack.Screen> */}
+        <Stack.Screen name="CustomerMenu" component={CustomerMenu} />
         <Stack.Screen name="KitchenFulfillment">
           {props => <KitchenFulfillment {...props} styles={styles} state={state} />}
         </Stack.Screen>
