@@ -20,7 +20,7 @@ export default function Home({ styles, navigation }) {
                 <Separator styles={styles}></Separator>
 
                 <Button title="Customer Route"
-                    onPress={() => navigation.navigate('CustomerMain')}
+                    onPress={() => navigation.navigate('CustomerMenu')}
                 />
 
                 <Separator styles={styles}></Separator>

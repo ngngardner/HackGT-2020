@@ -16,7 +16,7 @@ const items = [
 export default class CustomerMenu extends Component {
     constructor(props) {
         super(props);
-        const cartId = SellingAPI.createCart();
+        //const cartId = SellingAPI.createCart();
         this.state = {
             items: [
                 { name: "Cola", id: 101, count: 0, price: 5.0 },
@@ -24,7 +24,7 @@ export default class CustomerMenu extends Component {
                 { name: "Something", id: 200, count: 0, price: 3.5 },
                 { name: "Something", id: 22, count: 0, price: 4.0 },
             ],
-            cartId: cartId
+            // cartId: cartId
         }
 
     }
@@ -39,7 +39,7 @@ export default class CustomerMenu extends Component {
                 console.log(this.state.items);
             }
         }
-        //SellingAPI.incrementCartItem(this.state.cartId, item.id);
+        // SellingAPI.incrementCartItem(this.state.cartId, item.id);
     }
     decrement(item) {
         for (var i = 0; i < items.length; i++) {
@@ -55,7 +55,7 @@ export default class CustomerMenu extends Component {
                 console.log(this.state.items);
             }
         }
-        SellingAPI.decrementCartItem(this.state.cartId, item.id);
+        //SellingAPI.decrementCartItem(this.state.cartId, item.id);
     }
     countTotalCost() {
         //const cart = SellingAPI.getCart(this.state.cartId);
@@ -124,6 +124,7 @@ export default class CustomerMenu extends Component {
 
                             );
                         }}
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
                 <Text style={{
