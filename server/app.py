@@ -20,7 +20,7 @@ def items_id(item_id):
         return selling.get_item(ctx, item_id)
 
 
-@app.route("/items/2/<item_id>", methods=["GET"])
+@app.route("/items/2/<item_id>", methods=["PUT"])
 def create_price(item_id):
     if request.method == 'PUT':
         return selling.create_price(ctx, request.data, item_id)
