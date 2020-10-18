@@ -55,12 +55,18 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 30,
+    marginTop: 20,
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  kitchenContainer: {
+    flex: 1,
+    flexDirection: 'column',
   },
   logo: {
     width: 100,

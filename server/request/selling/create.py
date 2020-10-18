@@ -13,7 +13,7 @@ def create_item(ctx, body, item_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text
 
 
 def create_price(ctx, body, item_id):
@@ -27,7 +27,7 @@ def create_price(ctx, body, item_id):
         auth=ctx.auth
     )
 
-    return response
+    return response.text
 
 
 def create_cart(ctx):

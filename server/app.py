@@ -14,10 +14,18 @@ def carts():
         return selling.create_cart(ctx)
 
 
-@app.route("/items/<item_id>", methods=["GET"])
+@app.route("/items/<item_id>", methods=["GET", "PUT"])
 def items_id(item_id):
     if request.method == 'GET':
         return selling.get_item(ctx, item_id)
+    if request.method == "PUT":
+        return selling.create_item(ctx, request.data, item_id)
+
+
+@app.route("/items/2/<item_id>", methods=["PUT"])
+def create_price(item_id):
+    if request.method == 'PUT':
+        return selling.create_price(ctx, request.data, item_id)
 
 
 @app.route("/carts/<cart_id>", methods=["GET", "DELETE"])
