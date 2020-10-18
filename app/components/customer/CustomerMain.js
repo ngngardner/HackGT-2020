@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 
@@ -17,7 +16,6 @@ export default function CustomerMain({ styles, navigation }) {
                     onPress={() => navigation.navigate('CustomerMenu')}
                 />
             </View>
-            <StatusBar style="auto" />
         </View>
 
     );

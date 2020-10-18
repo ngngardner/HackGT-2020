@@ -10,10 +10,15 @@ export default function Home({ styles, navigation }) {
         <View style={styles.container}>
 
             <View>
-                <Text style={{ fontSize: 30 }}>Reverse Delivery</Text>
+                <Text style={{
+                    marginBottom: 170,
+                    fontSize: 30
+                }}> Reverse Delivery</Text>
             </View>
 
             <View>
+                <Separator styles={styles}></Separator>
+
                 <Button title="Customer Route"
                     onPress={() => navigation.navigate('CustomerMain')}
                 />
@@ -21,20 +26,20 @@ export default function Home({ styles, navigation }) {
                 <Separator styles={styles}></Separator>
 
                 <Button title="Kitchen Route"
-                    onPress={() => { Alert.alert('kitchen Router pressed') }}
+                    onPress={() => navigation.navigate('KitchenFulfillment')}
                 />
+                <Separator styles={styles}></Separator>
+
             </View>
 
-            {/* <StatusBar style="auto" /> */}
+
             <View style={{}}>
-                <Text>Powered by</Text>
+                {/* <Text style={{ textAlignVertical: "center" }, { textAlign: "center" }}>Powered by</Text> */}
+                <Text style={{ padding: 10, marginTop: 170 }}>Powered by:</Text>
+
                 <Image
                     style={
-                        {
-                            height: 100,
-                            width: 100,
-                            justifyContent: "flex-end"
-                        }
+                        styles.logo
                     }
                     source={require('../images/NCR_logo.png')} />
             </View>
@@ -42,4 +47,3 @@ export default function Home({ styles, navigation }) {
         </View>
     );
 }
-

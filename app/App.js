@@ -8,6 +8,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import CustomerMain from './components/customer/CustomerMain';
 import CustomerMenu from './components/customer/CustomerMenu';
+import KitchenComplete from './components/kitchen/KitchenComplete';
+import KitchenFulfillment from './components/kitchen/KitchenFulfillment';
+
+
+import * as ScreenOrientation from 'expo-screen-orientation';
+ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE_LEFT);
 
 const Separator = () => (
   <View style={styles.separator} />
@@ -15,19 +21,30 @@ const Separator = () => (
 
 const Stack = createStackNavigator();
 
+const state = {
+  cart: []
+}
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home">
-          {props => <Home {...props} styles={styles} />}
+          {props => <Home {...props} styles={styles} state={state} />}
         </Stack.Screen>
         <Stack.Screen name="CustomerMain">
-          {props => <CustomerMain {...props} styles={styles} />}
+          {props => <CustomerMain {...props} styles={styles} state={state} />}
         </Stack.Screen>
         <Stack.Screen name="CustomerMenu">
-          {props => <CustomerMenu {...props} styles={styles} />}
+          {props => <CustomerMenu {...props} styles={styles} state={state} />}
         </Stack.Screen>
+        <Stack.Screen name="KitchenFulfillment">
+          {props => <KitchenFulfillment {...props} styles={styles} state={state} />}
+        </Stack.Screen>
+        <Stack.Screen name="KitchenComplete">
+          {props => <KitchenComplete {...props} styles={styles} state={state} />}
+        </Stack.Screen>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -35,6 +52,10 @@ export default function App() {
 
 
 const styles = StyleSheet.create({
+  title: {
+    textAlign: 'center',
+    fontSize: 30,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -54,5 +75,9 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+    marginHorizontal: 16,
+    backgroundColor: '#f9c2ff',
+
   },
+
 });
