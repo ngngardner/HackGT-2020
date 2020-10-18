@@ -26,7 +26,7 @@ export default class CustomerMenu extends Component {
             ],
             cartId: cartId
         }
-        
+
     }
     increment(item) {
         for (var i = 0; i < items.length; i++) {
@@ -39,7 +39,7 @@ export default class CustomerMenu extends Component {
                 console.log(this.state.items);
             }
         }
-        SellingAPI.incrementCartItem(this.state.cartId, item.id);
+        //SellingAPI.incrementCartItem(this.state.cartId, item.id);
     }
     decrement(item) {
         for (var i = 0; i < items.length; i++) {
@@ -58,8 +58,8 @@ export default class CustomerMenu extends Component {
         SellingAPI.decrementCartItem(this.state.cartId, item.id);
     }
     countTotalCost() {
-        const cart = SellingAPI.getCart(this.state.cartId);
-        const cartTotalFromApi = cart.totals.grossAmount;
+        //const cart = SellingAPI.getCart(this.state.cartId);
+        //const cartTotalFromApi = cart.totals.grossAmount;
         var total = 0;
         this.state.items.forEach(element => {
             total = element.count * element.price + total;

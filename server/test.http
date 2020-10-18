@@ -16,7 +16,7 @@ content-type: application/json
 
 ################
 # Get cart info by Id
-GET http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw HTTP/1.1
+GET http://127.0.0.1:5000/carts/YEmCP3mkdUOqYQ0XPsGpkg HTTP/1.1
 content-type: application/json
 
 ################
@@ -26,7 +26,7 @@ content-type: application/json
 
 ################
 # Add item to cart
-POST http://127.0.0.1:5000/carts/Eetz7ALTF0msVQtfqD0oVw/items/101 HTTP/1.1
+POST http://127.0.0.1:5000/carts/T-0LHG4au0eiFmXyPvjCmg/items/101 HTTP/1.1
 content-type: application/json
 
 ################
